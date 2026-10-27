@@ -1,0 +1,13 @@
+CompileFlags:
+  # the include folders, defines and warnings come from compile_commands.json, which
+  # ./build.sh writes. a header borrows the command of a source near it.
+  Add:
+    # parse headers as c (clangd otherwise guesses objective-c++ for .h files).
+    - -xc
+    - -std=c23
+---
+# the generated wayland protocol code is compiled without warnings and is not edited.
+If:
+  PathMatch: build/.*
+Diagnostics:
+  Suppress: "*"

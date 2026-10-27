@@ -1,0 +1,65 @@
+# the layout of src/, as clang-format can express it. STYLE.md covers the rest.
+# needs clang-format 22 or later (for the BreakAfterOpenBracket/BreakBeforeCloseBracket keys).
+Language: Cpp
+BasedOnStyle: LLVM
+ColumnLimit: 95
+IndentWidth: 2
+ContinuationIndentWidth: 2
+UseTab: Never
+
+# return type on its own line, for every definition and declaration, and the opening brace
+# of a function on its own line. every other brace stays on the line it belongs to.
+BreakAfterReturnType: All
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: true
+  AfterStruct: false
+  AfterEnum: false
+  AfterUnion: false
+  AfterControlStatement: Never
+  BeforeElse: false
+
+# short bodies stay on the line of their if, else or loop. case bodies always go under the
+# label, which is indented inside its switch. functions and enums are always expanded, and
+# an empty loop body is written {}.
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortLoopsOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: None
+AllowShortEnumsOnASingleLine: false
+IndentCaseLabels: true
+
+# parameters and arguments that do not fit on one line go one per line, indented two
+# spaces, with the closing bracket on a line of its own.
+AlignAfterOpenBracket: false
+AlignOperands: DontAlign
+BinPackArguments: false
+BinPackParameters: OnePerLine
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+BreakAfterOpenBracketFunction: true
+BreakBeforeCloseBracketFunction: true
+BreakBeforeBinaryOperators: None
+BreakBeforeTernaryOperators: true
+PenaltyBreakAssignment: 100
+PenaltyBreakOpenParenthesis: 1000
+
+# braced lists have no inner spaces ({a, b}). one that does not fit opens and closes on
+# lines of its own, with one item per line, indented two spaces.
+Cpp11BracedListStyle: FunctionCall
+BreakAfterOpenBracketBracedList: true
+BreakBeforeCloseBracketBracedList: true
+
+PointerAlignment: Right
+SpaceAfterCStyleCast: false
+AlignTrailingComments: false
+ReflowComments: Always
+
+# includes are sorted within each block. the blocks themselves are kept as written.
+SortIncludes: CaseSensitive
+IncludeBlocks: Preserve
+
+MaxEmptyLinesToKeep: 1
+KeepEmptyLines:
+  AtStartOfBlock: false

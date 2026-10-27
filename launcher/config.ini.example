@@ -1,0 +1,27 @@
+# launcher config: copy to ~/.config/launcher/config.ini.
+# lines starting with # or ; are comments.
+
+[blacklist]
+# a desktop entry is left out when its name, id, command or comment contains one of these,
+# compared as lowercase words. a [blacklist] section replaces the built-in list (this one).
+Avahi
+btop++
+Foot Client
+Foot Server
+Hardware Locality
+Kvantum
+Limine
+Manage Printing
+QT
+Qt V4L2
+uuctl
+UXterm
+Vim
+wiremix
+XTerm
+
+[whitelist]
+# name = command. when there is any entry here, only these are listed (and the desktop
+# entries are not read at all). each command runs with sh -c.
+# Firefox = firefox --new-window
+# Terminal = foot
