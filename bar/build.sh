@@ -14,7 +14,7 @@ source "$(dirname "$0")/../common/build.sh"
 
 left=(workspaces mpris window)
 center=(clock)
-right=(tray dnd battery temp cpu memory disk bluetooth network volume)
+right=(tray dnd battery temp cpu memory disk connectivity volume)
 wallpaper=true
 
 arguments=()
@@ -37,6 +37,17 @@ for module in "${modules[@]+"${modules[@]}"}"; do
     exit 1
   fi
 done
+
+# connectivity is the bluetooth and network modules in one pill, so it needs their files, and
+# can't be listed alongside them (they would each start twice).
+compiled=("${modules[@]+"${modules[@]}"}")
+if printf '%s\n' "${modules[@]+"${modules[@]}"}" | grep -qx connectivity; then
+  if printf '%s\n' "${modules[@]}" | grep -qxE 'bluetooth|network'; then
+    echo "build: connectivity already includes bluetooth and network" >&2
+    exit 1
+  fi
+  compiled+=(bluetooth network)
+fi
 
 # the generated table of modules.
 table() {
@@ -87,7 +98,7 @@ sources=(
   common/strbuf.c
   common/wayland.c
 )
-for module in $(printf '%s\n' "${modules[@]+"${modules[@]}"}" | sort -u); do
+for module in $(printf '%s\n' "${compiled[@]+"${compiled[@]}"}" | sort -u); do
   sources+=("bar/modules/$module.c")
 done
 # the tray has helpers of its own, and draws svg icons with librsvg.

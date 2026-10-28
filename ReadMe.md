@@ -65,7 +65,7 @@ bar/build.sh --left "workspaces window" --center "clock" --no-wallpaper
 |---|---|
 | left | `workspaces mpris window` |
 | center | `clock` |
-| right | `tray dnd battery temp cpu memory disk bluetooth network volume` |
+| right | `tray dnd battery temp cpu memory disk connectivity volume` |
 
 ## Running
 
@@ -131,6 +131,7 @@ bar calendar    # open or close the calendar (on the focused output)
 | disk | how full `/` is | click: dua |
 | bluetooth | adapter on or off, and connected devices | click: bluetui |
 | network | the wired interface, else the Wi-Fi network, else "offline" (name hidden on narrow outputs) | click: impala |
+| connectivity | bluetooth and network in one pill (instead of listing them separately) | click either half: as its own pill |
 | volume | the default output's volume | wheel: ±5%; right click: mute; left click: wiremix |
 
 Outputs narrower than 1920 logical pixels get the compact bar.
